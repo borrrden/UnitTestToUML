@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "UnitTestToUML": {
+      "commandName": "Project",
+      "commandLineArgs": "-cs D:\\Development\\couchbase-lite-net-2\\src\\Couchbase.Lite.Tests.NetCore\\bin\\Debug\\netcoreapp1.0\\Couchbase.Lite.Tests.NetCore.dll -j D:\\Development\\couchbase-lite-android\\android\\CouchbaseLite\\src\\androidTest\\java\\com\\couchbase\\lite -a D:\\Development\\couchbase-lite-ios\\Objective-C\\Tests -u D:\\Users\\borrrden\\Desktop -c D:\\Users\\borrrden\\Desktop\\AppleTest\\config.json"
+    },
+    "newProfile1": {
+      "commandName": "Executable"
+    }
+  }
+}
