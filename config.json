@@ -1,0 +1,72 @@
+{
+    "AppleFunctionMap" : {
+        "TestCreateWithCSharpList" : "TestCreateWithNSArray",
+        "TestSetCSharpList" : "TestSetNSArray",
+        "TestDeleteDBOpenByOtherInstance" : "TestDeleteDBOpendByOtherInstance",
+        "TestCreateDictionaryWithCSharpDictionary" : "TestCreateDictionaryWithNSDictionary",
+        "TestCreateDocWithNullID" : "TestCreateDocWithNilID",
+        "TestSetNull" : "TestSetNil",
+        "TestSetCSharpDictionary" : "TestSetNSDictionary",
+        "TestSetArrayObjectToMultipleKeys" : "TestSetArrayToMultipleKeys",
+        "TestDictionaryFragmentSetCSharpDictionary" : "TestDictionaryFragmentSetNSDictionary",
+        "TestDictionaryFragmentSetCSharpList" : "TestDictionaryFragmentSetNSArray",
+        "TestEnumeratingDictionary" : "DictionaryTest.TestEnumeratingKeys",
+        "TestEnumeratingDocument" : "DocumentTest.TestEnumeratingKeys",
+        "TestArrayFragmentSetCSharpDictionary" : "TestArrayFragmentSetNSDictionary"
+    },
+    "JavaFunctionMap" : {
+        "TestCreateWithCSharpList" : "TestCreateWithList",
+        "TestSetNull" : "TestNull",
+        "TestCreateDictionaryWithCSharpDictionary" : "TestCreateDictionaryWithNSDictionary",
+        "TestEnumeratingDictionary" : "DictionaryTest.TestEnumeratingKeys",
+        "TestEnumeratingDocument" : "DocumentTest.TestEnumeratingKeys",
+        "TestDatabaseChange": "TestDatabaseNotification",
+        "TestDocumentChange":"TestDocumentNotification",
+        "TestConflictDeletion":"TestDeletionConflict",
+        "TestSetCSharpList" : "TestSetArrayList",
+        "TestCreateDocWithNullID" : "TestCreateDocWithNilID",
+        "DocumentTest.TestSetCSharpList" : "TestSetList",
+        "ArrayTest.TestSetCSharpList" : "TestSetArrayList",
+        "TestDeleteDBOpenByOtherInstance" : "TestDeleteDBOpenedByOtherInstance",
+        "TestCreateWithDefaultConfiguration" : "TestCreateWithDefaultOption",
+        "TestOverwriteDocWithNewDocInstance" : "TestOverwriteDocWithNewDocInstgance",
+        "TestOpenExistingDBv1x" : "TestOpenExsitingDBv1x",
+        "TestOpenExistingDBv1xNoAttachment" : "TestOpenExsitingDBv1xNoAttachment",
+        "TestOpenExistingDB" : "TestOpenExsitingDB",
+        "TestSetCSharpDictionary" : "TestSetMap",
+        "TestQueryWhereBooleanExpression" : "TestQueryWhereBooleanExpresion",
+        "TestGetDictionary": "TestGetMap"
+    },
+    "SkipFiles" : [
+        "CSharpTest.cs",
+        "DocPerfTest.cs",
+        "TestCase.cs",
+        "TunesPerfTest.cs",
+        "PredicateQueryTest.m",
+        "ReplicatorWithSyncGatewaySSLTest.java",
+        "ReplicatorWithSyncGatewayTest.java",
+        "ReplicatorWithSyncGatewayDBTest.java",
+        "ReplicatorConfigurationTest.java"
+    ],
+    "CSharpSkip": [
+        "TestJSONDateRoundTrip",
+        "TestGetNumber",
+        "TestSetNSNull",
+        "TestEquals",
+        "TestHashCode",
+        "TestDatabaseConfigurationWithAndroidContect",
+        "TestDerivePBKDF2SHA256Key",
+        "TestAddNumber",
+        "TestSetNumber",
+        "TestInsertNumber"
+    ],
+    "AppleSkip": [
+        "TestEquals",
+        "TestHashCode",
+        "TestDatabaseConfigurationWithAndroidContect",
+        "TestDerivePBKDF2SHA256Key"
+    ],
+    "JavaSkip" : [
+        "FragmentTest"
+    ]
+}

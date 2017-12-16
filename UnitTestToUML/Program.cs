@@ -21,6 +21,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -46,8 +47,8 @@ namespace UnitTestToUML
             ValueName = "path", ShortName = "c")]
         public string ConfigPath { get; set; }
 
-        [Option(CommandOptionType.SingleValue, Description = "The path to the file to read C# unit tests from",
-            ValueName = "path", ShortName = "cs")]
+        [Option(CommandOptionType.SingleValue, Description = "The path to the folder to read C# unit tests from",
+            ValueName = "path", ShortName = "s")]
         public string CSharpPath { get; set; }
 
         [Option(CommandOptionType.SingleValue, Description = "The path to the folder to read Java unit tests from",
@@ -57,6 +58,9 @@ namespace UnitTestToUML
         [Option(CommandOptionType.SingleValue, Description = "The path to the directory to write UML output to",
             ValueName = "path", ShortName = "u")]
         public string UMLDirectory { get; set; }
+
+        [Option(CommandOptionType.NoValue, Description = "Also write per platform unit test lists", ShortName = "v")]
+        public bool Verbose { get; set; }
 
         #endregion
 
@@ -139,20 +143,26 @@ namespace UnitTestToUML
             var csharpLiteCore = new Dictionary<string, List<string>>();
 
             ReadCSharp(csharpCbl, csharpLiteCore, options.SkipFiles);
-            WriteUML("csharp.puml", csharpCbl, csharpLiteCore);
+            if (Verbose) {
+                WriteUML("csharp.puml", csharpCbl, csharpLiteCore);
+            }
 
             var appleCbl = new Dictionary<string, List<string>>();
             var appleLiteCore = new Dictionary<string, List<string>>();
             if (ApplePath != null) {
                 ReadApple(appleCbl, appleLiteCore, options.SkipFiles);
-                WriteUML("apple.puml", appleCbl, appleLiteCore);
+                if (Verbose) {
+                    WriteUML("apple.puml", appleCbl, appleLiteCore);
+                }
             }
 
             var javaCbl = new Dictionary<string, List<string>>();
             var javaLiteCore = new Dictionary<string, List<string>>();
             if (JavaPath != null) {
                 ReadJava(javaCbl, javaLiteCore, options.SkipFiles);
-                WriteUML("java.puml", javaCbl, javaLiteCore);
+                if (Verbose) {
+                    WriteUML("java.puml", javaCbl, javaLiteCore);
+                }
             }
 
             var diff = new Diff();
@@ -256,22 +266,42 @@ namespace UnitTestToUML
         private void ReadCSharp(Dictionary<string, List<string>> cblTests, Dictionary<string, List<string>> liteCoreTests, IReadOnlyList<string> skipFiles)
         {
             while (CSharpPath == null) {
-                CSharpPath = Prompt.GetString("Please enter the path to the binary to read the unit tests from: ");
+                CSharpPath = Prompt.GetString("Please enter the path to the folder to read C# unit tests from: ");
             }
 
-            var assembly = Assembly.LoadFrom(CSharpPath);
-            foreach (var type in assembly.GetTypes()) {
-                if (skipFiles.Contains(type.Name)) {
+            var di = new DirectoryInfo(CSharpPath);
+            if (!di.Exists) {
+                throw new DirectoryNotFoundException("Path to C# tests not found");
+            }
+
+            var classSig = new Regex("\\s*public (?:sealed )?class (\\S+)", RegexOptions.Compiled);
+            var useNextLine = false;
+            foreach (var file in di.EnumerateFiles("*.cs")) {
+                if (skipFiles.Contains(file.Name)) {
                     continue;
                 }
 
-                if ((type.FullName.StartsWith("Test") || type.FullName.StartsWith("LiteCore.Test"))) {
-                    var cblTest = type.FullName.StartsWith("Test");
-                    var dict = cblTest ? cblTests : liteCoreTests;
-                    dict[type.Name] = new List<string>();
-                    foreach (var method in type.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly)) {
-                        if (method.CustomAttributes.Any(x => x.AttributeType.Name == "FactAttribute")) {
-                            dict[type.Name].Add(method.Name);
+                using (var fin = new StreamReader(File.OpenRead(file.FullName))) {
+                    string testName = null;
+                    string nextLine;
+                    while ((nextLine = fin.ReadLine()?.Trim()) != null) {
+                        if (testName == null && classSig.IsMatch(nextLine)) {
+                            var implName = classSig.Match(nextLine).Groups[1].Value;
+                            if (implName.EndsWith("Test")) {
+                                testName = implName;
+                                cblTests[testName] = new List<string>();
+                            }
+                        } else if (useNextLine) {
+                            var split = nextLine.Split(' ');
+                            if (split.Length < 3) {
+                                continue;
+                            }
+
+                            var nextMethod = split.First(x => x.StartsWith("Test"));
+                            cblTests[testName].Add(nextMethod.Substring(0, nextMethod.Length - 2));
+                            useNextLine = false;
+                        } else {
+                            useNextLine = nextLine == "[Fact]";
                         }
                     }
                 }
@@ -286,7 +316,7 @@ namespace UnitTestToUML
 
             var di = new DirectoryInfo(JavaPath);
             if (!di.Exists) {
-                throw new DirectoryNotFoundException("Path to Apple tests not found");
+                throw new DirectoryNotFoundException("Path to Java tests not found");
             }
 
             var useNextLine = false;
@@ -306,7 +336,12 @@ namespace UnitTestToUML
                                 cblTests[testName] = new List<string>();
                             }
                         } else if (useNextLine) {
-                            var nextMethod = nextLine.Split(' ')[2];
+                            var split = nextLine.Split(' ');
+                            if (split.Length < 3) {
+                                continue;
+                            }
+
+                            var nextMethod = split.First(x => x.StartsWith("test"));
                             cblTests[testName].Add(Char.ToUpperInvariant(nextMethod[0]) + nextMethod.Substring(1, nextMethod.Length - 3));
                             useNextLine = false;
                         } else {
