@@ -13,6 +13,8 @@
   
 # Notes
 
+A sample config file can be found at the root of this repo (config.json)
+
 This will generate up to four files in the specified UML directory:
 
 1. diff.puml: The list of unit tests missing from each platform
