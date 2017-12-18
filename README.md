@@ -15,6 +15,32 @@
 
 A sample config file can be found at the root of this repo (config.json)
 
+The config file has the following schema:
+
+```javascript
+{
+    "AppleFunctionMap" : {
+        "<CSharpTestName>" :  "<EquivalentAppleTestName>"
+    },
+    "JavaFunctionMap" : {
+        "<CSharpTestName>" :  "<EquivalentJavaTestName>"
+    },
+    "SkipFiles" : [
+        "<FilenameToSkip>"
+    ],
+    "CSharpSkip": [
+        "<MethodOrClassToSkip>"
+    ],
+    "AppleSkip": [
+        "<MethodOrClassToSkip>"
+    ],
+    "JavaSkip" : [
+        "<MethodOrClassToSkip>"
+    ]
+}
+```
+
+
 This will generate up to four files in the specified UML directory:
 
 1. diff.puml: The list of unit tests missing from each platform
