@@ -43,6 +43,8 @@
         "TestCase.cs",
         "TunesPerfTest.cs",
         "PredicateQueryTest.m",
+        "JavaTest.java",
+        "ErrorCaseTest.java",
         "ReplicatorWithSyncGatewaySSLTest.java",
         "ReplicatorWithSyncGatewayTest.java",
         "ReplicatorWithSyncGatewayDBTest.java",
