@@ -41,7 +41,9 @@
         "ConcurrencyTest.TestDocumentChange" : "TestBlockDocumentChange",
         "ConcurrencyTest.TestDatabaseChange" : "TestBlockDatabaseChange",
         "TestConcurrentCreateAndCloseDB" : "TestConcurrentCreateNCloseDB",
-        "TestConcurrentCreateAndDeleteDB" : "TestConcurrentCreateNDeleteDB"
+        "TestConcurrentCreateAndDeleteDB" : "TestConcurrentCreateNDeleteDB",
+        "TestConcurrentInBatch":"TestConcurrentCreateInBatch",
+        "TestConcurrentCompact":"TestConcurrentCreateNCompactDB"
     },
     "SkipFiles" : [
         "CSharpTest.cs",
