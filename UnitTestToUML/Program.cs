@@ -298,7 +298,7 @@ namespace UnitTestToUML
                             }
 
                             var nextMethod = split.First(x => x.StartsWith("Test"));
-                            cblTests[testName].Add(nextMethod.Substring(0, nextMethod.Length - 2));
+                            cblTests[testName].Add(nextMethod.Trim('(', ')'));
                             useNextLine = false;
                         } else {
                             useNextLine = nextLine == "[Fact]";
@@ -342,7 +342,7 @@ namespace UnitTestToUML
                             }
 
                             var nextMethod = split.First(x => x.StartsWith("test"));
-                            cblTests[testName].Add(Char.ToUpperInvariant(nextMethod[0]) + nextMethod.Substring(1, nextMethod.Length - 3));
+                            cblTests[testName].Add(Char.ToUpperInvariant(nextMethod[0]) + nextMethod.Substring(1).Trim('(', ')'));
                             useNextLine = false;
                         } else {
                             useNextLine = nextLine == "@Test";

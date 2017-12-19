@@ -35,7 +35,9 @@
         "TestOpenExistingDB" : "TestOpenExsitingDB",
         "TestSetCSharpDictionary" : "TestSetMap",
         "TestQueryWhereBooleanExpression" : "TestQueryWhereBooleanExpresion",
-        "TestGetDictionary": "TestGetMap"
+        "TestGetDictionary": "TestGetMap",
+        "TestCreateDocWithID": "TestNewDocWithId",
+        "TestGetValueFromDocument" : "TestGetValueFromNewEmptyDoc"
     },
     "SkipFiles" : [
         "CSharpTest.cs",
