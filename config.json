@@ -37,7 +37,11 @@
         "TestQueryWhereBooleanExpression" : "TestQueryWhereBooleanExpresion",
         "TestGetDictionary": "TestGetMap",
         "TestCreateDocWithID": "TestNewDocWithId",
-        "TestGetValueFromDocument" : "TestGetValueFromNewEmptyDoc"
+        "TestGetValueFromDocument" : "TestGetValueFromNewEmptyDoc",
+        "ConcurrencyTest.TestDocumentChange" : "TestBlockDocumentChange",
+        "ConcurrencyTest.TestDatabaseChange" : "TestBlockDatabaseChange",
+        "TestConcurrentCreateAndCloseDB" : "TestConcurrentCreateNCloseDB",
+        "TestConcurrentCreateAndDeleteDB" : "TestConcurrentCreateNDeleteDB"
     },
     "SkipFiles" : [
         "CSharpTest.cs",
