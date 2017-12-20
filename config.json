@@ -16,7 +16,6 @@
     },
     "JavaFunctionMap" : {
         "TestCreateWithCSharpList" : "TestCreateWithList",
-        "TestSetNull" : "TestNull",
         "TestCreateDictionaryWithCSharpDictionary" : "TestCreateDictionaryWithNSDictionary",
         "TestEnumeratingDictionary" : "DictionaryTest.TestEnumeratingKeys",
         "TestEnumeratingDocument" : "DocumentTest.TestEnumeratingKeys",
