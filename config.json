@@ -22,12 +22,9 @@
         "TestDatabaseChange": "TestDatabaseNotification",
         "TestDocumentChange":"TestDocumentNotification",
         "TestConflictDeletion":"TestDeletionConflict",
-        "TestSetCSharpList" : "TestSetArrayList",
+        "TestSetCSharpList" : "TestSetList",
         "TestCreateDocWithNullID" : "TestCreateDocWithNilID",
-        "DocumentTest.TestSetCSharpList" : "TestSetList",
-        "ArrayTest.TestSetCSharpList" : "TestSetArrayList",
         "TestDeleteDBOpenByOtherInstance" : "TestDeleteDBOpenedByOtherInstance",
-        "TestCreateWithDefaultConfiguration" : "TestCreateWithDefaultOption",
         "TestOverwriteDocWithNewDocInstance" : "TestOverwriteDocWithNewDocInstgance",
         "TestOpenExistingDBv1x" : "TestOpenExsitingDBv1x",
         "TestOpenExistingDBv1xNoAttachment" : "TestOpenExsitingDBv1xNoAttachment",
@@ -36,7 +33,6 @@
         "TestQueryWhereBooleanExpression" : "TestQueryWhereBooleanExpresion",
         "TestGetDictionary": "TestGetMap",
         "TestCreateDocWithID": "TestNewDocWithId",
-        "TestGetValueFromDocument" : "TestGetValueFromNewEmptyDoc",
         "ConcurrencyTest.TestDocumentChange" : "TestBlockDocumentChange",
         "ConcurrencyTest.TestDatabaseChange" : "TestBlockDatabaseChange",
         "TestConcurrentCreateAndCloseDB" : "TestConcurrentCreateNCloseDB",
@@ -76,6 +72,7 @@
         "TestDerivePBKDF2SHA256Key"
     ],
     "JavaSkip" : [
+        "TestSetNSNull",
         "FragmentTest"
     ]
 }
